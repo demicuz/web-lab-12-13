@@ -10,6 +10,8 @@ Vue.createApp({
 
 			maxImgCountString: 10,
 			imgCount: 4,
+			modalImgUrl: "",
+			modalImgName: "",
 		};
 	},
 
@@ -32,6 +34,11 @@ Vue.createApp({
 			} else {
 				return 100;
 			}
-		}
+		},
+
+		isBtnAddDisabled() {
+			return this.modalImgName.length === 0
+				|| this.modalImgUrl.length === 0;
+		},
 	}
 }).mount("#app");
