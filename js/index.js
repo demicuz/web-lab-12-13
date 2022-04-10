@@ -1,15 +1,26 @@
 'use strict';
 
-Vue.createApp({
-	// reactive state
+const app = Vue.createApp({
 	data() {
 		return {
-			message: "Hello Vue!",
-			count: 0,
-			rawHtml: `<span style="color: red">This should be red.</span>`,
-
-			maxImgCountString: 10,
-			imgCount: 4,
+			images: [
+				{
+					name: "first image",
+					url: "https://picsum.photos/600",
+					uuid: crypto.randomUUID()
+				},
+				{
+					name: "second image",
+					url: "https://picsum.photos/600/500",
+					uuid: crypto.randomUUID()
+				},
+				{
+					name: "third image",
+					url: "https://picsum.photos/600/400",
+					uuid: crypto.randomUUID()
+				},
+			],
+			maxImgCountString: "10",
 			modalImgUrl: "",
 			modalImgName: "",
 		};
@@ -18,11 +29,25 @@ Vue.createApp({
 	methods: {
 		increment() {
 			this.count++;
+		},
+
+		onAddClick() {
+			const image = {
+				name: this.modalImgName,
+				url: this.modalImgUrl,
+				uuid: crypto.randomUUID()
+			};
+			this.images.unshift(image);
+			this.modalImgName = "";
+			this.modalImgUrl = "";
 		}
 	},
 
-	// We can use computed variables like any other declared in data() (I think)
 	computed: {
+		imgCount() {
+			return this.images.length;
+		},
+
 		maxImgCount() {
 			const cnt = parseInt(this.maxImgCountString);
 			return cnt && cnt > 0 ? cnt : 0;
@@ -41,4 +66,6 @@ Vue.createApp({
 				|| this.modalImgUrl.length === 0;
 		},
 	}
-}).mount("#app");
+});
+
+app.mount("#app");
