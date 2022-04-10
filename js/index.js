@@ -20,17 +20,16 @@ const app = Vue.createApp({
 					uuid: crypto.randomUUID()
 				},
 			],
+
 			maxImgCountString: "10",
 			modalImgUrl: "",
 			modalImgName: "",
+
+			showAddedSuccess: false
 		};
 	},
 
 	methods: {
-		increment() {
-			this.count++;
-		},
-
 		onAddClick() {
 			const image = {
 				name: this.modalImgName,
@@ -40,10 +39,14 @@ const app = Vue.createApp({
 			this.images.unshift(image);
 			this.modalImgName = "";
 			this.modalImgUrl = "";
+
+			this.showAddedSuccess = true;
+			setTimeout(() => this.showAddedSuccess = false, 1000);
 		}
 	},
 
 	computed: {
+		// TODO maybe remove this variable?
 		imgCount() {
 			return this.images.length;
 		},

@@ -7,6 +7,18 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
+	<style>
+		.v-enter-active,
+		.v-leave-active {
+			transition: opacity 0.5s ease;
+		}
+
+		.v-enter-from,
+		.v-leave-to {
+			opacity: 0;
+		}
+	</style>
+
 	<title>lab12</title>
 </head>
 
@@ -48,7 +60,11 @@
 
 			<div class="col-md-5 col-lg-4 order-md-last">
 				<div class="card p-3 mb-3">
-					<input type="text" v-model="maxImgCountString" class="form-control mb-3 col-6 col-md-8" placeholder="Max images">
+					<input
+						type="text"
+						v-model="maxImgCountString"
+						class="form-control mb-3 col-6 col-md-8"
+						placeholder="Max images">
 
 					<div class="progress mb-3">
 						<div
@@ -77,8 +93,7 @@
 						id="add-images-modal"
 						tabindex="-1"
 						aria-labelledby="add-images-modal"
-						aria-hidden="true"
-					>
+						aria-hidden="true">
 						<div class="modal-dialog modal-dialog-centered">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -120,7 +135,19 @@
 								</div>
 
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+									<Transition>
+										<div
+											class="alert alert-success py-1 me-auto"
+											v-if="showAddedSuccess"
+										>Successfully added!</div>
+									</Transition>
+
+									<button
+										type="button"
+										class="btn btn-secondary"
+										data-bs-dismiss="modal"
+									>Cancel</button>
+
 									<button
 										type="button"
 										class="btn btn-primary"
@@ -144,6 +171,7 @@
 							<div class="card-body">
 								<h5 class="card-title d-flex justify-content-between align-items-center">
 									<span>{{ image.name }}</span>
+									
 									<button type="button" class="btn btn-outline-danger">
 										<i class="bi bi-trash3"></i>
 									</button>
