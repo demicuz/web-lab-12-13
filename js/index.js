@@ -1,5 +1,11 @@
 'use strict';
 
+function uuidv4() {
+	return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+		(c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+	);
+}
+
 const app = Vue.createApp({
 	data() {
 		return {
@@ -7,17 +13,17 @@ const app = Vue.createApp({
 				{
 					name: "Doggo",
 					url: "https://picsum.photos/id/1025/600",
-					uuid: Crypto.randomUUID()
+					uuid: uuidv4()
 				},
 				{
 					name: "Subway",
 					url: "https://picsum.photos/id/1033/600/500",
-					uuid: Crypto.randomUUID()
+					uuid: uuidv4()
 				},
 				{
 					name: "Castle",
 					url: "https://picsum.photos/id/1040/600/400",
-					uuid: Crypto.randomUUID()
+					uuid: uuidv4()
 				},
 			],
 
@@ -34,7 +40,7 @@ const app = Vue.createApp({
 			const image = {
 				name: this.modalImgName,
 				url: this.modalImgUrl,
-				uuid: Crypto.randomUUID()
+				uuid: uuidv4()
 			};
 			this.images.unshift(image);
 			
