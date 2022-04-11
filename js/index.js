@@ -46,7 +46,6 @@ const app = Vue.createApp({
 		},
 
 		onDeleteImage(uuid) {
-			// 0.6s
 			const imgIndex = this.images.findIndex((img) => img.uuid === uuid);
 
 			if (imgIndex > -1) {
@@ -58,7 +57,6 @@ const app = Vue.createApp({
 	},
 
 	computed: {
-		// TODO maybe remove this variable?
 		imgCount() {
 			return this.images.length;
 		},
