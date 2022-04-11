@@ -7,17 +7,17 @@ const app = Vue.createApp({
 				{
 					name: "Doggo",
 					url: "https://picsum.photos/id/1025/600",
-					uuid: self.crypto.randomUUID()
+					uuid: Crypto.randomUUID()
 				},
 				{
 					name: "Subway",
 					url: "https://picsum.photos/id/1033/600/500",
-					uuid: self.crypto.randomUUID()
+					uuid: Crypto.randomUUID()
 				},
 				{
 					name: "Castle",
 					url: "https://picsum.photos/id/1040/600/400",
-					uuid: self.crypto.randomUUID()
+					uuid: Crypto.randomUUID()
 				},
 			],
 
@@ -34,7 +34,7 @@ const app = Vue.createApp({
 			const image = {
 				name: this.modalImgName,
 				url: this.modalImgUrl,
-				uuid: self.crypto.randomUUID()
+				uuid: Crypto.randomUUID()
 			};
 			this.images.unshift(image);
 			
