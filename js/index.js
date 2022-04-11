@@ -36,7 +36,7 @@ const app = Vue.createApp({
 	},
 	
 	methods: {
-		onAddClick() {
+		onAddImage() {
 			const image = {
 				name: this.modalImgName,
 				url: this.modalImgUrl,
