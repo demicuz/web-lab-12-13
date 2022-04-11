@@ -5,18 +5,18 @@ const app = Vue.createApp({
 		return {
 			images: [
 				{
-					name: "first image",
-					url: "https://picsum.photos/600",
+					name: "Doggo",
+					url: "https://picsum.photos/id/1025/600",
 					uuid: crypto.randomUUID()
 				},
 				{
-					name: "second image",
-					url: "https://picsum.photos/600/500",
+					name: "Subway",
+					url: "https://picsum.photos/id/1033/600/500",
 					uuid: crypto.randomUUID()
 				},
 				{
-					name: "third image",
-					url: "https://picsum.photos/600/400",
+					name: "Castle",
+					url: "https://picsum.photos/id/1040/600/400",
 					uuid: crypto.randomUUID()
 				},
 			],
@@ -28,7 +28,7 @@ const app = Vue.createApp({
 			showAddedSuccess: false
 		};
 	},
-
+	
 	methods: {
 		onAddClick() {
 			const image = {
@@ -37,11 +37,23 @@ const app = Vue.createApp({
 				uuid: crypto.randomUUID()
 			};
 			this.images.unshift(image);
+			
 			this.modalImgName = "";
 			this.modalImgUrl = "";
 
 			this.showAddedSuccess = true;
-			setTimeout(() => this.showAddedSuccess = false, 1000);
+			setTimeout(() => this.showAddedSuccess = false, 2000);
+		},
+
+		onDeleteImage(uuid) {
+			// 0.6s
+			const imgIndex = this.images.findIndex((img) => img.uuid === uuid);
+
+			if (imgIndex > -1) {
+				this.images.splice(imgIndex, 1);
+			} else {
+				console.log("Image with uuid", uuid, "wasn't found!");
+			}
 		}
 	},
 
@@ -68,6 +80,10 @@ const app = Vue.createApp({
 			return this.modalImgName.length === 0
 				|| this.modalImgUrl.length === 0;
 		},
+
+		isTooManyImages() {
+			return this.imgCount > this.maxImgCount;
+		}
 	}
 });
 
